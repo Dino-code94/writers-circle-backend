@@ -3,6 +3,7 @@ from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from .views import PostViewSet, CommentViewSet, VoteView
 from .auth_views import RegisterView, LoginView
+from .admin_views import list_users, delete_user  # admin imports
 
 # DRF router for posts & comments
 router = DefaultRouter()
@@ -18,5 +19,9 @@ urlpatterns = [
         path('vote/<int:post_id>/', VoteView.as_view(), name='vote'),
         path('register/', RegisterView.as_view(), name='register'),
         path('login/', LoginView.as_view(), name='login'),
+
+        # Admin API routes (keep grouped here)
+        path('admin/users/', list_users, name='list-users'),
+        path('admin/delete_user/<int:user_id>/', delete_user, name='delete-user'),
     ])),
 ]
