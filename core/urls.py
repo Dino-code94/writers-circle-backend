@@ -4,6 +4,7 @@ from rest_framework.routers import DefaultRouter
 from .views import PostViewSet, CommentViewSet, VoteView
 from .auth_views import RegisterView, LoginView
 from .admin_views import list_users, delete_user  # admin imports
+from .profile_views import user_profile  # import your new view
 
 # DRF router for posts & comments
 router = DefaultRouter()
@@ -23,5 +24,6 @@ urlpatterns = [
         # Admin API routes (keep grouped here)
         path('admin/users/', list_users, name='list-users'),
         path('admin/delete_user/<int:user_id>/', delete_user, name='delete-user'),
+        path('user/', user_profile, name='user-profile'),
     ])),
 ]
